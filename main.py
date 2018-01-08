@@ -39,20 +39,22 @@ def get_assets():
         # get data from API
         new_assets_list = get_assets_list()
         # check all assets
-        for asset in new_assets_list:
+        for asset_in_new in new_assets_list:
+
             # if asset not in first assets's array
-            if asset not in current_assets_list:
+            if asset_in_new not in current_assets_list:
+
                 for chat_id in env.chat_ids:
                     # log
-                    print('https://api.telegram.org/bot{0}/sendMessage?chat_id={1}&text="Новая валюта - {2}'.format(
+                    print('https://api.telegram.org/bot{0}/sendMessage?chat_id={1}&text="Новая валюта - {2}"'.format(
                         token, chat_id,
-                        asset))
+                        asset_in_new))
                     # send message to chat
                     requests.get(
                         'https://api.telegram.org/bot{0}/sendMessage?chat_id={1}&text="Новая валюта - {2}'.format(
                             token, chat_id,
-                            asset))
-                    current_assets_list.append(asset)
+                            asset_in_new))
+                    current_assets_list.append(asset_in_new)
         sleep(60)
 
 
